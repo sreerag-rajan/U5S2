@@ -51,7 +51,7 @@ export const Rentals = ({data,setData}) => {
               return el;
             }
           })
-          setData(x);
+          // setData(x);
         }}
       />
       <table className="table" border="1">
