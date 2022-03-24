@@ -11,12 +11,13 @@ function App() {
 
   useEffect(()=>{
     displayData();
-  },[displayForm,data])
+  },[displayForm])
   function toggleDisplay(){
     setDisplayForm(!displayForm);
   }
   
   function displayData(){
+    
     axios.get("http://localhost:8080/houses").then(res => setData(res.data))
     setData(data);
   }

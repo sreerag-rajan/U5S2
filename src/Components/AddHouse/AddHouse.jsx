@@ -14,7 +14,7 @@ export const AddHouse = ({toggleDisplay}) => {
 
   function handleChange(e){
     let {className,value,type,checked} = e.target
-    value = type==="checkbox"?checked:value;
+    value = type==="checkbox"? checked:value;
     setFormData({...formData,[className]:value})
   }
 
@@ -43,10 +43,10 @@ export const AddHouse = ({toggleDisplay}) => {
         <label>preferredTenant</label>
         <br />
         <label>bachelor</label>
-        <input onChange={handleChange} checked={"bachelor"} type="checkbox" className="bachelor" />
+        <input onChange={handleChange} value={formData.preferredTenant} checked={"bachelor"} type="checkbox" className="bachelor" />
         <br />
         <label>married</label>
-        <input onChange={handleChange} checked={"married"} type="checkbox" className="married" />
+        <input onChange={handleChange} value={formData.preferredTenant} checked={"married"} type="checkbox" className="married" />
         <br />
         <label>image</label>
         <input onChange={handleChange} value={formData.image} type="text" className="image" required />

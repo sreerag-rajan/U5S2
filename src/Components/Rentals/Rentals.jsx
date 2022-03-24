@@ -1,32 +1,58 @@
+import { useState, useEffect } from "react";
 import "./Rentals.css";
 
 export const Rentals = ({data,setData}) => {
-  
+  const[text,setText] = useState("")
   
 
   return (
     <div className="rentalContainer">
       <div className="sortingButtons">
         <button onClick={()=>{
-          setData(data.sort((a,b) =>a.id-b.id))
+          let newarray = [...data]
+          newarray.sort((a,b)=>{
+            if(a.id<b.id){
+              return -1
+            }
+            return 1
+          })
+          setData(newarray)
         }} className="sortById">Sort by ID</button>
         <button onClick={()=>{
-          setData(data.sort((a,b) =>a.rend-b.rent))
+          let newarray = [...data]
+          newarray.sort((a,b)=>{ return a.rent-b.rent})
+          setData(newarray)
         }} className="sortByRentAsc">Rent Low to high</button>
         <button onClick={()=>{
-          setData(data.sort((a,b) =>b.id-a.id))
+          let newarray = [...data]
+          newarray = newarray.sort((a,b)=> b.rent-a.rent)
+          setData(newarray)
         }} className="sortByRentDesc">Rent High to low</button>
         <button onClick={()=>{
-          setData(data.sort((a,b) =>a.areaCode-b.areaCode))
+          let newarray = [...data]
+          newarray.sort((a,b)=>{ return a.areaCode-b.areaCode})
+          setData(newarray)
         }} className="sortByAreaAsc">Area Low to high</button>
         <button onClick={()=>{
-          setData(data.sort((a,b) =>b.areaCode-a.areaCode))
+          let newarray = [...data]
+          newarray.sort((a,b)=>{ return b.areaCode-a.areaCode})
+          setData(newarray)
         }} className="sortByAreaDesc">Area High to Low</button>
       </div>
       <input
         className="searchAddress"
         type="text"
         placeholder="Search Address"
+        onChange={(e)=>{
+          setText(e.target.value);
+          let newarray = [...data];
+          let x = newarray.filter((el)=>{
+            if(el.address===text){
+              return el;
+            }
+          })
+          setData(x);
+        }}
       />
       <table className="table" border="1">
         <thead>
